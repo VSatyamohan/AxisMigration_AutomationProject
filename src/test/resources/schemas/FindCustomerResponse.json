@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "required": ["status", "ucic", "matchCount"],
+  "properties": {
+    "status": {"type": "string"},
+    "ucic": {"type": "string"},
+    "matchCount": {"type": "integer"}
+  }
+}

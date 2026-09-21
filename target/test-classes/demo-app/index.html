@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Axis Demo Application</title>
+<style>
+body { font-family: Arial; margin: 30px; }
+button, input { padding: 8px; margin: 5px; }
+.menu { margin-bottom: 20px; }
+#verification { display:none; }
+#holdMessage { color: green; font-weight:bold; }
+</style>
+</head>
+<body>
+<h1 id="appTitle">Axis Customer Application</h1>
+<div id="login">
+  <h2>Login</h2>
+  <input id="username" placeholder="Username">
+  <input id="password" type="password" placeholder="Password">
+  <button id="loginBtn" onclick="login()">Login</button>
+</div>
+
+<div id="home" style="display:none">
+  <div class="menu">
+    <button id="imagingMenu" onclick="showImaging()">Imaging Eyeballing</button>
+  </div>
+  <div id="imaging" style="display:none">
+    <a id="imgVerificationLink" href="#" onclick="showVerification()">Img_Verification</a>
+  </div>
+  <div id="verification">
+    <h2>Img Verification</h2>
+    <input id="comments" placeholder="Comments">
+    <button id="internalHoldButton" onclick="prepareHold()">INTERNAL HOLD</button>
+    <button id="confirmHoldButton" style="display:none" onclick="confirmHold()">Confirm INTERNAL HOLD</button>
+    <div id="holdMessage"></div>
+  </div>
+</div>
+
+<script>
+function login() {
+  document.getElementById('login').style.display='none';
+  document.getElementById('home').style.display='block';
+}
+function showImaging() {
+  document.getElementById('imaging').style.display='block';
+}
+function showVerification() {
+  event.preventDefault();
+  document.getElementById('verification').style.display='block';
+}
+function prepareHold() {
+  document.getElementById('confirmHoldButton').style.display='inline-block';
+}
+function confirmHold() {
+  const c=document.getElementById('comments').value;
+  localStorage.setItem('status','IH');
+  localStorage.setItem('comments',c);
+  document.getElementById('holdMessage').innerText='Record marked as IH';
+}
+</script>
+</body>
+</html>
